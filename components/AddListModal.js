@@ -39,6 +39,7 @@ export default class AddListModal extends Component {
     //   color,
     //   todos: [],
     // });
+
     this.setState({ name: "" });
     this.props.closeModal();
   };
@@ -56,21 +57,25 @@ export default class AddListModal extends Component {
   }
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <View style={styles.container}>
         <TouchableOpacity
-          style={{ position: "absolute", top: 64, right: 32 }}
+          style={{ position: "absolute", top: 34, right: 32 }}
           onPress={this.props.closeModal}
         >
           <AntDesign name="close" size={24} color={colors.black} />
         </TouchableOpacity>
         <View style={{ alignSelf: "stretch", marginHorizontal: 32 }}>
           <Text style={styles.title}>Create Todo List</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="List Name"
-            onChangeText={(text) => this.setState({ name: text })}
-          />
-
+          <KeyboardAvoidingView
+            behavior={Platform.OS == "ios" ? "padding" : "height"}
+            //behavior="padding"
+          >
+            <TextInput
+              style={styles.input}
+              placeholder="List Name"
+              onChangeText={(text) => this.setState({ name: text })}
+            />
+          </KeyboardAvoidingView>
           <View
             style={{
               flexDirection: "row",
@@ -90,7 +95,7 @@ export default class AddListModal extends Component {
             </Text>
           </TouchableOpacity>
         </View>
-      </KeyboardAvoidingView>
+      </View>
     );
   }
 }
