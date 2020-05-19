@@ -24,6 +24,19 @@ export default class App extends Component {
     loading: true,
   };
 
+  constructor(props) {
+    super(props);
+
+    global.__old_console_warn = global.__old_console_warn || console.warn;
+    global.console.warn = (...args) => {
+      let tst = (args[0] || "") + "";
+      if (tst.startsWith("Setting a timer")) {
+        return;
+      }
+      return global.__old_console_warn.apply(console, args);
+    };
+  }
+
   componentDidMount() {
     firebase = new ConnectFirebase((error, user) => {
       if (error) {
@@ -52,20 +65,15 @@ export default class App extends Component {
   };
 
   addList = (list) => {
-    this.setState({
-      lists: [
-        ...this.state.lists,
-        { ...list, id: this.state.lists.length + 1, todos: [] },
-      ],
+    firebase.addList({
+      name: list.name,
+      color: list.color,
+      todos: [],
     });
   };
 
   updateList = (list) => {
-    this.setState({
-      lists: this.state.lists.map((item) => {
-        return item.id === list.id ? list : item;
-      }),
-    });
+    firebase.updateList(list);
   };
 
   render() {

@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import colors from "../Colors";
-import TempData from "../TempData";
+//import TempData from "../TempData";
 
 export default class AddListModal extends Component {
   backgroundColor = [
