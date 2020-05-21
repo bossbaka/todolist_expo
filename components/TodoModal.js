@@ -93,7 +93,7 @@ export default class TodoModal extends Component {
 
     return (
       <TouchableOpacity onPress={() => this.deleteTodo(index)}>
-        <Animated.View style={(styles.deleteButton, { opacity: opacity })}>
+        <Animated.View style={[styles.deleteButton, { opacity: opacity }]}>
           <Animated.Text
             style={{
               color: colors.white,
