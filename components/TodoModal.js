@@ -115,7 +115,10 @@ export default class TodoModal extends Component {
     const completedCount = list.todos.filter((todo) => todo.completed).length;
 
     return (
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        //behavior="padding"
+      >
         <SafeAreaView style={styles.container}>
           <TouchableOpacity
             style={{ position: "absolute", top: 34, right: 32, zIndex: 10 }}
